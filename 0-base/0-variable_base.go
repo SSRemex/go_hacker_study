@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // 声明全局变量， 可以使用方法一 方法二 方法三
 var A int
