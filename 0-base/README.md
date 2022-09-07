@@ -1,6 +1,8 @@
 # GO基础
 本目录是对go的基础语法学习
 
+该部分是通过B站该视频学习[8小时转职Golang工程师(如果你想低成本学习Go语言)](https://www.bilibili.com/video/BV1gf4y1r79E)
+
 ## 运行
 `go run target.go` 直接运行main函数
 `go build` 编译
