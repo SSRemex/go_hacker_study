@@ -5,7 +5,9 @@
 
 ## 运行
 `go run target.go` 直接运行main函数
+
 `go build` 编译
+
 `go env -w GO111MODULE=on` 修改go环境变量开启go modules
 
 ## 特殊用法记录
@@ -13,6 +15,7 @@
 `go build -ldflags "-w -s" target.go` 禁用默认情况下生成二进制文件中所包含的调试信息和字符表，该命令可以使编译后的可执行文件体积减小大约30%
 
 **交叉编译**
+
 bash下可以 `GOSO="windows" GOARCH="amd64" go build .\hello.go`
 windows下需修改env 过于复杂
 
@@ -25,6 +28,7 @@ windows下需修改env 过于复杂
 
 ## import机制
 go在import导包时会采取如下执行顺序
+
 当前文件(import pkg_A) -> pkg_A 中(import -> init() )
 
 **`go mod`使用**
