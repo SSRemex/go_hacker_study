@@ -3,6 +3,7 @@ package shodan
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -11,7 +12,7 @@ type APIInfo struct {
 	ScanCredits  int    `json:"scan_credits"`
 	Telnet       bool   `json:"telnet"`
 	Plan         string `json:"plan"`
-	HTTPS        bool   `json:"https"`
+	Https        bool   `json:"https"`
 	Unlocked     bool   `json:"unlocked"`
 }
 
@@ -21,6 +22,9 @@ func (client *Client) APIInfo() (*APIInfo, error) {
 		return nil, err
 	}
 	defer res.Body.Close()
+
+	body, _ := ioutil.ReadAll(res.Body)
+	fmt.Println(string(body))
 
 	var ret APIInfo
 	if err := json.NewDecoder(res.Body).Decode(&ret); err != nil {
