@@ -15,3 +15,9 @@ err := json.Unmarshal(body, &json_str)
 ```
 
 同时该项目中，使用了go1.18的新特性，work模式进行包管理，运行时只需在`/cmd/shodan`下直接`go run main.go`即可
+
+## `02-metasploit-minimal`
+与metasploit交互
+
+## `03`
+该内容暂时不写，不属于重点
