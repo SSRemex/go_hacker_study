@@ -93,14 +93,14 @@ func rangeChannel() {
 		fmt.Println("goroutine 正在运行")
 		for i := 0; i < 3; i++ {
 			//fmt.Println("sub goroutine 正在运行，发送的元素 = ", i, "len = ", len(c), " cap = ", cap(c))
-			c <- i
-
+			c <- 1
 		}
 		close(c)
 	}()
 
 	// channel range特殊使用
 	// 通过循环进行迭代
+	// 只要go程在运行，就会一直等待，所有go程结束，如果chan没关闭就会异常
 	for data := range c {
 		fmt.Println(data)
 	}
@@ -125,19 +125,21 @@ func fibonacii(c, quit chan int) {
 
 func main() {
 
-	// 单流程下一个go监控一个channel的状态，select可以完成监控多个channel的状态
-	// channel select 特殊用法
-	c := make(chan int)
-	quit := make(chan int)
+	// // 单流程下一个go监控一个channel的状态，select可以完成监控多个channel的状态
+	// // channel select 特殊用法
+	// c := make(chan int)
+	// quit := make(chan int)
 
-	go func() {
-		for i := 0; i < 6; i++ {
-			fmt.Println("c: ", <-c)
-		}
+	// go func() {
+	// 	for i := 0; i < 6; i++ {
+	// 		fmt.Println("c: ", <-c)
+	// 	}
 
-		quit <- 0
-	}()
+	// 	quit <- 0
+	// }()
 
-	fibonacii(c, quit)
+	// fibonacii(c, quit)
+
+	rangeChannel()
 
 }
