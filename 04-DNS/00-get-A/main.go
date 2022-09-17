@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/miekg/dns"
 )
 
@@ -9,6 +11,19 @@ func main() {
 	// FQDN 完全限定域名
 	fqdn := dns.Fqdn("stacktitan.com")
 	msg.SetQuestion(fqdn, dns.TypeA)
-	dns.Exchange(&msg, "8.8.8.8:53")
+	in, err := dns.Exchange(&msg, "8.8.8.8:53")
+	if err != nil {
+		panic(err)
+	}
+	if len(in.Answer) < 1 {
+		fmt.Println("No records")
+		return
+	}
+	// 输出A记录
+	for _, answer := range in.Answer {
+		if a, ok := answer.(*dns.A); ok {
+			fmt.Println(a.A)
+		}
+	}
 
 }
