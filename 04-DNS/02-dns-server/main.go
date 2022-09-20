@@ -19,7 +19,8 @@ func main() {
 					Class:  dns.ClassINET,
 					Ttl:    0,
 				},
-				A: net.ParseIP("127.0.0.1").To4(),
+				// A解析到的IP
+				A: net.ParseIP("192.168.199.138").To4(),
 			}
 			resp.Answer = append(resp.Answer, &a)
 		}
